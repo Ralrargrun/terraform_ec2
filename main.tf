@@ -3,12 +3,12 @@ provider "aws" {
   region = "us-east-1"
 }
 resource "aws_instance" "web" {
-  subnet_id     = var.subnet_id
-  ami           = var.ami
-  instance_type = var.tamanho
-  count         = var.quantidade
-  key_name      = "key-dev-hugo-amazon"
-  vpc_security_group_ids = ["${aws_security_group.permitir_ssh.id}"]
+  subnet_id                   = var.subnet_id
+  ami                         = var.ami
+  instance_type               = var.tamanho
+  count                       = var.quantidade
+  key_name                    = "key-dev-hugo-amazon"
+  vpc_security_group_ids      = ["${aws_security_group.permitir_ssh.id}"]
   associate_public_ip_address = true
   root_block_device {
     encrypted = true
