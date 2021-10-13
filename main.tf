@@ -1,29 +1,17 @@
+
 provider "aws" {
   region = "us-east-1"
 }
-
 resource "aws_instance" "web" {
+  subnet_id     = "subnet-063aaae37c891d10a"
   ami           = "ami-09e67e426f25ce0d7"
   instance_type = "t2.micro"
-  subnet_id              = "subnet-0926d1d3dff8224c3"
-  # availability_zones = ["us-east-1"] # configurando zona para criar maquinas
+  root_block_device {
+    encrypted   = true
+    kms_key_id  = "arn:aws:kms:us-east-1:534566538491:key/90847cc8-47e8-4a75-8a69-2dae39f0cc0d"
+    volume_size = 20
+  }
   tags = {
-    Name = "MinhaPrimeiraMaquinaHugo"
+    Name = "ec2-hugo-tf"
   }
-}
-
-
-resource "aws_ebs_volume" "itau_volume_encrypted" {
-  size      = 8
-  encrypted = true
-  availability_zone = "us-east-1a"
-  tags      = {
-    Name = "Volume itaú"
-  }
-}
-
-resource "aws_volume_attachment" "ebs_att" {
-  device_name = "/dev/sdh"
-  volume_id   = aws_ebs_volume.itau_volume_encrypted.id
-  instance_id = aws_instance.web.id
 }
