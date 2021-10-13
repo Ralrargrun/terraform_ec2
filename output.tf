@@ -4,3 +4,7 @@ output "ssh_conect" {
     "ec2 ${key + 1} - ${item.private_ip} - ssh -i ~/.ssh/id_rsa ubuntu@${item.private_ip}"
   ]
 }
+
+output "chave_ami"{
+  value = data.aws_ami.ubuntu.id
+}
