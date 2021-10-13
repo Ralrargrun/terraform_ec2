@@ -1,16 +1,16 @@
-resource "aws_security_group" "allow_tls" {
-  name        = "allow_tls"
-  description = "Allow TLS inbound traffic"
+resource "aws_security_group" "permitir_ssh" {
+  name        = "permitir_ssh_hugo"
+  description = "Permitindo SSH para as máquinas criadas pelo terraform"
   vpc_id      = aws_vpc.main.id
 
   ingress = [
     {
-      description      = "TLS from VPC"
-      from_port        = 443
-      to_port          = 443
+      description      = "Liberando SSH de entrada"
+      from_port        = 22
+      to_port          = 22
       protocol         = "tcp"
-      cidr_blocks      = [aws_vpc.main.cidr_block]
-      ipv6_cidr_blocks = [aws_vpc.main.ipv6_cidr_block]
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
     }
   ]
 
@@ -25,6 +25,6 @@ resource "aws_security_group" "allow_tls" {
   ]
 
   tags = {
-    Name = "allow_tls"
+    Name = "permitir_ssh"
   }
 }
