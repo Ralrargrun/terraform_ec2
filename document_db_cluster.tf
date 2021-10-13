@@ -5,12 +5,14 @@
 resource "aws_docdb_cluster_instance" "cluster_instances" {
   count              = 1 # replicas da instancia princial
   identifier         = "docdb-cluster-replica-${count.index}"
+  #db_subnet_group_name = aws_db_subnet_group.hugoern.name
   cluster_identifier = aws_docdb_cluster.docdb.id
   instance_class     = "db.r5.large"
 }
 
 resource "aws_docdb_cluster" "docdb" {
   cluster_identifier      = "my-docdb-cluster" # instancia princial
+  #db_subnet_group_name = aws_db_subnet_group.hugoern.name
   engine                  = "docdb"
   #vpc_id                  = "vpc-0d48f0e5799777077"
   master_username         = "danilo"
@@ -28,4 +30,12 @@ resource "aws_docdb_cluster" "docdb" {
 # terraform refresh - mostra retorno do output
 output "ids" {
   value = aws_docdb_cluster.docdb.id
+}
+
+resource "aws_db_subnet_group" "hugoern" {
+  name       = "main"
+  subnet_ids = ["subnet-0926d1d3dff8224c3", "subnet-060e21b9706e83381"]
+  tags = {
+    Name = "Subnet aurora group"
+  }
 }
