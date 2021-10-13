@@ -5,6 +5,6 @@ output "ssh_conect" {
   ]
 }
 
-output "chave_ami"{
+output "chave_ami" {
   value = data.aws_ami.ubuntu.id
 }
