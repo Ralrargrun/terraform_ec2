@@ -39,6 +39,7 @@ resource "aws_security_group" "permitir_ssh" {
 resource "aws_security_group" "acesso_mysql" {
   name        = "acesso_mysql"
   description = "Habilita porta padrao mysql"
+  vpc_id      = "vpc-0d48f0e5799777077"
 
   ingress = [
     {
@@ -48,9 +49,9 @@ resource "aws_security_group" "acesso_mysql" {
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0"]
       ipv6_cidr_blocks = ["::/0"]
-      prefix_list_ids = null,
-      security_groups: nulla,
-      self: null
+      prefix_list_ids  = null,
+      security_groups  = null,
+      self             = null
     }
   ]
 

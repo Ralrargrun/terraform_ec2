@@ -1,12 +1,12 @@
-resource "aws_db_instance" "default" {
-  engine            = "mysql"
-  engine_version    = "5.7.19"
-  instance_class    = "db.t2.micro"
-  name           = "danilo_db"
-  username       = "danilouser"
-  password       = "danilopass"
-  allocated_storage = 5 # aloca 5 GiB
-  publicly_accessible = true # libera acesso publico
+resource "aws_rds_cluster" "default" {
+ # cluster_identifier      = "aurora-cluster-demo"
+  engine                  = "aurora-mysql"
+  engine_version          = "5.7.mysql_aurora.2.03.2"
+ # availability_zones      = ["us-east-1a", "us-east-1b"]
+  db_subnet_group_name = "subnet-063aaae37c891d10a"
+  database_name           = "hugo_db"
+  master_username       = "hugouser"
+  master_password       = "hugopass"
   vpc_security_group_ids = ["${aws_security_group.acesso_mysql.id}"]
   backup_retention_period = 0 # não criar backup periódico
   # preferred_backup_window = "07:00-09:00" # hora que vai realizar o backup
