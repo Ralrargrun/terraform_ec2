@@ -12,6 +12,7 @@ resource "aws_docdb_cluster_instance" "cluster_instances" {
 resource "aws_docdb_cluster" "docdb" {
   cluster_identifier      = "my-docdb-cluster" # instancia princial
   engine                  = "docdb"
+  #vpc_id                  = "vpc-0d48f0e5799777077"
   master_username         = "danilo"
   master_password         = "danilo_doc134_db"
   vpc_security_group_ids  = ["${aws_security_group.acesso_docdb.id}"] # caso precise 

@@ -1,7 +1,7 @@
 resource "aws_security_group" "acesso_docdb" {
   name        = "acesso_docdb"
   description = "Habilita acesso docdb"
-
+  vpc_id      = "vpc-0d48f0e5799777077"
   ingress = [
     {
       from_port        = 27017
