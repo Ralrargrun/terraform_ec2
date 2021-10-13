@@ -3,7 +3,7 @@ resource "aws_rds_cluster" "default" {
   engine                  = "aurora-mysql"
   engine_version          = "5.7.mysql_aurora.2.03.2"
  # availability_zones      = ["us-east-1a", "us-east-1b"]
-  db_subnet_group_name = "subnet-063aaae37c891d10a"
+  db_subnet_group_name = aws_db_subnet_group.database.name
   database_name           = "hugo_db"
   master_username       = "hugouser"
   master_password       = "hugopass"
@@ -16,4 +16,9 @@ resource "aws_rds_cluster" "default" {
   tags = {
     Name = "meu mysql"
   }
+}
+
+data "aws_db_subnet_group" "database" {
+  name = "grupo-subnet-db-hugo"
+  subnet_ids = ["subnet-063aaae37c891d10a"]
 }
