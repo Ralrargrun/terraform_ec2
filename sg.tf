@@ -1,6 +1,6 @@
 resource "aws_security_group" "permitir_ssh" {
   name        = "permitir_ssh_hugo"
-  description = "Permitindo SSH para as máquinas criadas pelo terraform"
+  description = "Permitindo SSH para as maquinas criadas pelo terraform"
   vpc_id      = "vpc-0d48f0e5799777077"
 
   ingress = [
@@ -27,7 +27,7 @@ resource "aws_security_group" "permitir_ssh" {
       prefix_list_ids  = null,
       security_groups  = null,
       self             = null
-      description      = "Liberando porta interna pra geral" 
+      description      = "Liberando porta interna pra geral"
     }
   ]
 
