@@ -1,0 +1,20 @@
+provider "aws" {
+  region = "us-east-2"
+}
+
+resource "aws_rds_cluster" "leords" {
+  cluster_identifier   = "leords"
+  db_subnet_group_name = aws_db_subnet_group.leords.name
+  engine_mode          = "multimaster"
+  master_password      = "root1234"
+  master_username      = "root"
+  skip_final_snapshot  = true
+}
+
+resource "aws_db_subnet_group" "leords" {
+  name       = "main"
+  subnet_ids = ["subnet-0562ef0250ea5768a", "subnet-0cd20efbbde139bd3"]
+  tags = {
+    Name = "Subnet aurora group"
+  }
+}

@@ -1,7 +1,11 @@
+provider "aws" {
+  region = "us-east-2"
+}
+
 resource "aws_security_group" "acesso_mysql" {
   name        = "acesso_mysql"
   description = "Habilita porta padrao mysql"
-  vpc_id      = "vpc-0d48f0e5799777077"
+  vpc_id      = "vpc-06e2ff1a267a79f98"
 
   ingress = [
     {
